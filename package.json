@@ -2,10 +2,14 @@
   "name": "electron-build-custom-icon",
   "version": "0.1.0",
   "private": true,
+  "productName": "electron-build-custom-icon",
+  "main": "public/electron.js",
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "electron": "^22.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -15,7 +19,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "package": "electron-builder build --mac -c.extraMetadata.main=build/electron.js --publish never"
   },
   "eslintConfig": {
     "extends": [
@@ -33,6 +39,19 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "build": {
+    "mac": {
+      "provider": "generic",
+      "owner": "My Company",
+      "repo": "electron-build-custom-icon",
+      "private": true,
+      "token": ""
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
     ]
   }
 }
