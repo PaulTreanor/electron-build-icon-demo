@@ -20,7 +20,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
-    "package": "electron-builder build --mac -c.extraMetadata.main=build/electron.js --publish never"
+    "package": "electron-builder build --mac -c.extraMetadata.main=build/electron.js --publish never",
+    "publish": "electron-builder build --mac --publish always"
   },
   "eslintConfig": {
     "extends": [
@@ -41,19 +42,31 @@
     ]
   },
   "build": {
+    "directories": {
+      "buildResources": "resources",
+      "output": "dist"
+    },
     "mac": {
-      "provider": "generic",
-      "owner": "My Company",
-      "repo": "electron-build-custom-icon",
-      "private": true,
-      "token": ""
+      "publish": {
+        "provider": "github",
+        "owner": "Github Owner",
+        "repo": "Repository Name",
+        "private": true,
+        "token": ""
+      }
     },
     "files": [
       "build/**/*",
       "node_modules/**/*"
-    ]
+    ],
+    "publish": {
+      "provider": "github",
+      "private": true,
+      "owner": "Github Owner"
+    }
   },
   "devDependencies": {
-    "electron": "^22.1.0"
+    "electron": "^22.1.0",
+    "electron-builder": "^23.6.0"
   }
 }
